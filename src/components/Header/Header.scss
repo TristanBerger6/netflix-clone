@@ -1,0 +1,26 @@
+header {
+  height: 4em;
+  padding-top: calc(20px + 0.5rem);
+  margin: 0 5%;
+  &.fixed {
+    background: rgb(20, 20, 20);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 10%,
+      rgba(0, 0, 0, 0)
+    );
+
+    margin: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 1.5em;
+    height: 5.5em;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    transition: background-color 1000ms;
+  }
+  &.top {
+    background-color: transparent;
+  }
+}

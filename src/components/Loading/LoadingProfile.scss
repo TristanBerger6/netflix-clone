@@ -1,0 +1,40 @@
+@import '../../sass/variables';
+
+.loadingProfile {
+  width: 100%;
+  min-height: 100vh;
+
+  &__card {
+    position: relative;
+    width: 50%;
+    margin: 15rem auto;
+    &__spinner {
+      animation: spin 1000ms linear;
+      animation-iteration-count: infinite;
+      img {
+        width: 110px;
+        display: block;
+        margin: auto;
+      }
+    }
+    &__user {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      img {
+        width: 50px;
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

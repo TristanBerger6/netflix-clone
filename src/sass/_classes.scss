@@ -1,0 +1,138 @@
+//////////////////////////////////////////
+// -------- ELEMENTS ------------------//
+/////////////////////////////////////////
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.flow > *:where(:not(:first-child)) {
+  // to add space , where doesn't add specifecity
+  margin-top: var(--flow-space, 1rem);
+}
+
+.btn {
+  color: white;
+  background: var(--clr-red);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  &:active {
+    background: var(--clr-red-dark);
+  }
+}
+
+.link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+//////////////////////////////////////////
+// ---------- ACCESSIBILITY -------------//
+//////////////////////////////////////////
+
+// screen reader only. Only for assistive technologies.
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+//////////////////////////////////////////
+// -------- UTILITY CLASSES -----------//
+/////////////////////////////////////////
+
+/* text and bg colors */
+
+.bg-white {
+  background-color: white;
+}
+.bg-black {
+  background-color: black;
+}
+.bg-red {
+  background-color: var(--clr-red);
+}
+.bg-grey {
+  background-color: var(--clr-grey);
+}
+.bg-grey-dark {
+  background-color: var(--clr-grey-dark);
+}
+
+.text-white {
+  color: white;
+}
+.text-black {
+  color: black;
+}
+.text-grey {
+  color: var(--clr-grey);
+}
+.text-grey-light {
+  color: var(--clr-grey-light);
+}
+
+/* Font related */
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+.fw-400 {
+  font-weight: 400;
+}
+
+/* Home specif */
+.grey-bot {
+  --border-grey: 8px solid #222;
+  border-bottom: var(--border-grey);
+}
+.grey-top {
+  --border-grey: 8px solid #222;
+  border-top: var(--border-grey);
+}

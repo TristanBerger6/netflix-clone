@@ -1,0 +1,35 @@
+$screen-sm-min: 576px;
+$screen-md-min: 769px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+$screen-xxl-min: 1440px;
+
+:root {
+  /* colors */
+  --clr-red: #e50914;
+  --clr-red-dark: rgb(187, 10, 18);
+  --clr-grey: #333333;
+  --clr-grey-dark: #141414;
+  --clr-grey-light: #757575;
+
+  /* font-families */
+  --ff-Helvetica: Helvetica, Times, serif;
+
+  /* font-sizes */
+  --fs-800: 1.75rem;
+  --fs-700: 1.625rem;
+  --fs-600: 1.125rem;
+  --fs-500: 1rem;
+  --fs-400: 0.875rem;
+  --fs-300: 0.813rem;
+
+  @media (min-width: $screen-md-min) {
+    --fs-800: 3.125rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.625rem;
+  }
+  @media (min-width: $screen-xxl-min) {
+    --fs-800: 4rem;
+    --fs-700: 3.125rem;
+  }
+}

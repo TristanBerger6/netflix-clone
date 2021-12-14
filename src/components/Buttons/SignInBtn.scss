@@ -1,0 +1,11 @@
+@import '../../sass/variables';
+.signInBtn {
+  align-self: center;
+  padding: 0.2rem 0.7rem;
+  box-shadow: 0px 3px 5px rgb(17, 16, 16);
+  font-size: var(--fs-400);
+  @media (min-width: $screen-sm-min) {
+    font-size: var(--fs-500);
+    padding: 0.4rem 1rem;
+  }
+}

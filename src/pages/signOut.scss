@@ -1,0 +1,49 @@
+@import '../sass/variables';
+
+$bt-signout: rgb(1, 125, 247);
+
+.signOut {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: black;
+
+  &__head {
+    width: 100%;
+    height: 100%;
+  }
+  &__card {
+    padding: 4rem 2rem;
+    &__content {
+      margin-inline: auto;
+      padding: 2rem 2rem;
+      line-height: 1.5;
+      h1 {
+        margin-bottom: 2rem;
+      }
+      .btnToHome {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        background: $bt-signout;
+        margin-top: 1rem;
+        border: none;
+        height: 50px;
+        width: 100%;
+        cursor: pointer;
+        box-shadow: 0px 3px 3px $bt-signout;
+        &:hover {
+          background: lighten($bt-signout, 10%);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    background: transparent;
+    &__card__content {
+      max-width: 450px;
+    }
+  }
+}

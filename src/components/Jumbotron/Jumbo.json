@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "title": "Regardez Netflix sur votre TV",
+      "subTitle": "Regardez Netflix sur votre Smart TV, Playstation, Xbox, Chromecast, Apple TV, lecteurs Blu-ray et bien plus.",
+      "image": "./images/home-tv.jpg",
+      "alt": "Tiger King sur Netflix",
+      "direction": ""
+    },
+    {
+      "id": 2,
+      "title": "Téléchargez vos séries préférées pour les regarder hors connexion.",
+      "subTitle": "Enregistrez vos programmes préférés et ayez toujours quelque chose à regarder.",
+      "image": "/images/home-mobile.jpg",
+      "alt": "Stranger things sur mobile",
+      "direction": "reverse"
+    },
+    {
+      "id": 3,
+      "title": "Où que vous soyez.",
+      "subTitle": "Regardez des films et séries TV en accès illimité sur votre TV, smartphone, tablette et ordinateur, tout compris.",
+      "image": "/images/home-imac.jpg",
+      "alt": "Casa de papel sur Netflix",
+      "direction": ""
+    },
+    {
+        "id": 4,
+        "title": "Créez des profils pour les enfants.",
+        "subTitle": "Les enfants découvrent de nouvelles aventures et retrouvent leurs personnages préférés dans un espace bien à eux, déjà inclus dans votre abonnement.",
+        "image": "/images/home-jeune.png",
+        "alt": "Jeunesse sur Netflix",
+        "direction": "reverse"
+      }
+  ]

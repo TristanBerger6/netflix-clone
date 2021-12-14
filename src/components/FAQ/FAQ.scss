@@ -1,0 +1,50 @@
+@import '../../sass/variables';
+
+.faq-container {
+  padding-block: 4rem;
+  @media (min-width: $screen-sm-min) {
+    padding-inline: 3rem;
+  }
+}
+.faq {
+  text-align: center;
+  h2 {
+    padding-inline: 5%;
+  }
+  ul {
+    margin: 1.5rem auto;
+    max-width: 820px;
+  }
+  &__item {
+    margin-bottom: 1rem;
+
+    &__question {
+      text-align: left;
+      border: none;
+      width: 100%;
+      padding: 0.8em 1.2em 0.8em 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        filter: invert(1);
+        width: 5%;
+        cursor: pointer;
+      }
+    }
+    &__answer {
+      text-align: left;
+      padding: 1.2em;
+    }
+
+    &__answer-wrapper {
+      border-top: 1px solid black;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+    }
+    .opened {
+      max-height: 1200px;
+    }
+  }
+}

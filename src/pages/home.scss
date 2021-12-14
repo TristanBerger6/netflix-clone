@@ -1,0 +1,23 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__head {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+  }
+  &__card {
+    padding: 10rem 2%;
+    text-align: center;
+    h1 {
+      display: inline-block;
+      width: 20ch;
+    }
+    h2 {
+      margin: 1rem auto;
+    }
+  }
+}

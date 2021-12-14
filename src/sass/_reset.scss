@@ -1,0 +1,56 @@
+/* -------- CSS reset ------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset --> example of resets */
+
+/* box sizing and reset margins */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/* set up the body */
+body {
+  box-sizing: border-box;
+  line-height: 1.1;
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* make img easier to work with */
+img,
+picture {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
