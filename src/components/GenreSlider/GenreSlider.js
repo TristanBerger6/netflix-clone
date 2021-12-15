@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react/cjs/react.development';
 import './GenreSlider.scss';
 import { useMediaQuery } from 'react-responsive';
+import MovieCard from '../MovieCard/MovieCard';
 
 const DIRECTIOM_TYPE = {
   next: 'NEXT',
@@ -159,25 +160,14 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
             }}
           >
             {films.map((item, index) => (
-              <div
-                className="genre__slider__item"
-                key={item.id}
-                style={filmStyle(item.id, index)}
-                onMouseEnter={(e) => {
-                  handleMouseEnter(e, item.id);
-                }}
-                onMouseLeave={(e) => {
-                  handleMouseLeave(e, item.id);
-                }}
-                onClick={(e) => {
-                  handleClickFilm(e, item.id);
-                }}
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  alt="item.title"
-                />
-              </div>
+              <MovieCard
+                style={filmStyle}
+                item={item}
+                index={index}
+                onClick={handleClickFilm}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              />
             ))}
           </div>
         </div>

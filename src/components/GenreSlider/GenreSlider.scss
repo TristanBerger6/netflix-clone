@@ -28,20 +28,6 @@
     margin: auto;
   }
 
-  &__slider__item {
-    padding-inline: 0.1rem;
-    cursor: pointer;
-    transition: transform 200ms;
-    img {
-      border-radius: 8px;
-    }
-
-    &:hover {
-      img {
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
-      }
-    }
-  }
   &__left-arrow,
   &__right-arrow {
     position: absolute;
