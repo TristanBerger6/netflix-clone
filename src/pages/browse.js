@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
+
 import * as ROUTES from '../constants/routes';
 
 import LoadingProfile from '../components/Loading/LoadingProfile';
@@ -14,6 +15,7 @@ function Browse(props) {
   const { currentUser, signout } = useAuth();
 
   const navigate = useNavigate();
+  let params = useParams();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

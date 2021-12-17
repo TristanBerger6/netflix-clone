@@ -3,7 +3,7 @@ header {
   padding-top: calc(20px + 0.5rem);
   margin: 0 5%;
   &.fixed {
-    background: rgb(20, 20, 20);
+    background-color: rgb(20, 20, 20);
     background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.7) 10%,
@@ -18,9 +18,115 @@ header {
     position: fixed;
     width: 100%;
     z-index: 999;
-    transition: background-color 1000ms;
+    transition: background-color 1000ms 300ms;
   }
   &.top {
     background-color: transparent;
+  }
+}
+
+.header-browse-search {
+  position: relative;
+  --gap: 0;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+  border: none;
+  transition: background-color 500ms ease-in-out, border 500ms ease-in-out;
+  &.open {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: white 1px solid;
+  }
+  &__input {
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    width: 2.5rem;
+    transition: 500ms width ease-in-out, padding 100ms ease-in-out;
+    &.open {
+      width: 15rem;
+      padding-left: 3rem;
+    }
+  }
+  &__btn {
+    position: absolute;
+    left: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: invert(1);
+    padding: 0.2rem;
+  }
+}
+
+.header-browse-nav {
+  &__btn {
+    --gap: 0;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    border: white 1px solid;
+    height: 100%;
+    padding-left: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    img {
+      transform: rotateZ(90deg) scale(0.5);
+      filter: invert(1);
+    }
+  }
+  &__list {
+    position: relative;
+    top: -1px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid white;
+    flex-direction: column;
+    --gap: 0.5rem;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    li {
+      &:first-child {
+        a {
+          padding-top: 0.5rem;
+        }
+      }
+      &:last-child {
+        a {
+          padding-bottom: 0.5rem;
+        }
+      }
+    }
+
+    &.open {
+      opacity: 1;
+    }
+    a {
+      padding: 0 1rem;
+      display: block;
+      color: white;
+      z-index: -99999;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.header-browse-out {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-inline: 1rem;
+  color: white;
+  font-weight: 700;
+  border: white 1px solid;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }

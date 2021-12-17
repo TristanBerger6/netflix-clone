@@ -6,8 +6,9 @@ import SignIn from './pages/signIn';
 import SignUp from './pages/signUp';
 import SignOut from './pages/signOut';
 import Browse from './pages/browse';
+import BrowseContainer from './containers/browse';
 import ResetPassword from './pages/resetPassword';
-import MovieFocus from './components/MovieFocus/MovieFocus';
+
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
           <Route path={ROUTES.SIGN_OUT} element={<SignOut />} />
           <Route path={ROUTES.RESET_PASSWORD} element={<ResetPassword />} />
           <Route path={ROUTES.BROWSE} element={<PrivateOutlet />}>
-            <Route path="" element={<Browse />} />
+            <Route path="" element={<Browse />}>
+              <Route path=":genre" element={<Browse />}></Route>
+            </Route>
           </Route>
         </Routes>
       </Router>

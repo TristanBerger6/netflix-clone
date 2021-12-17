@@ -17,7 +17,7 @@ function Home(props) {
       <HeroBanner bg="bg-home">
         <Header>
           <div className="home__head flex">
-            <Logo state="not-clickable" />
+            <Logo state="not-clickable" route="home" />
             <SignInBtn />
           </div>
         </Header>

@@ -129,7 +129,7 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
     setHoverFilm();
   };
 
-  const handleClickFilm = (e, id) => {
+  const handleClick = (e, id) => {
     e.preventDefault();
     const current = films.find((item) => item.id === id);
     displayFilm(current);
@@ -147,10 +147,10 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
         <h2 className="text-white">{title}</h2>
         <div className="genre__wrapper ">
           <div className="genre__left-arrow" onClick={handlePrev}>
-            <img src="./images/chevron-right.png" alt="left arrow" />
+            <img src="/images/chevron-right.png" alt="left arrow" />
           </div>
           <div className="genre__right-arrow" onClick={handleNext}>
-            <img src="./images/chevron-right.png" alt="right arrow" />
+            <img src="/images/chevron-right.png" alt="right arrow" />
           </div>
           <div
             className="genre__slider flex"
@@ -161,10 +161,11 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
           >
             {films.map((item, index) => (
               <MovieCard
+                key={index}
                 style={filmStyle}
                 item={item}
                 index={index}
-                onClick={handleClickFilm}
+                onClick={handleClick}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               />
@@ -176,7 +177,7 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
   } else if (loadFetch) {
     return (
       <div className="genre-loading bg-black text-white fw-700 fs-600">
-        <img src="./images/loading.gif" alt=" loading gif" />
+        <img src="/loading.gif" alt=" loading gif" />
       </div>
     );
   } else if (errFetch) {

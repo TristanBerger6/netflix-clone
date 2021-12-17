@@ -15,6 +15,10 @@ function MovieFocus({ movieToFocus, removeFilm }) {
   const [videoUrl, setVideoUrl] = useState('');
   const [timeoutId, setTimeoutId] = useState('');
 
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+    removeFilm();
+  };
   useEffect(() => {
     // to trigger the transition between non-active and active state
     setTimeout(() => {
@@ -95,8 +99,8 @@ function MovieFocus({ movieToFocus, removeFilm }) {
             </div>
           </div>
 
-          <div className="film-focus__close" onClick={removeFilm}>
-            <img src="./images/close.png" alt="close" />
+          <div className="film-focus__close" onClick={handleClick}>
+            <img src="/images/close.png" alt="close" />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import './browse.scss';
 import { useFetch } from '../utils/useFetch';
 import { fetchGenres } from '../constants/requests';
@@ -7,6 +7,11 @@ import GenreSlider from '../components/GenreSlider/GenreSlider';
 import Header from '../components/Header/Header';
 import Logo from '../components/Logo/Logo';
 import MovieFocus from '../components/MovieFocus/MovieFocus';
+import MovieSearch from '../components/MovieSearch/MovieSearch';
+import HeroBannerBrowse from '../components/HeroBanner/HeroBannerBrowse';
+import Footer from '../components/Footer/Footer';
+import FooterData from '../components/Footer/Footer.json';
+import GENRES from '../constants/genres.json';
 
 function BrowseContainer({ error, currentUser, onClick }) {
   // ---------- Fetch Hook -----------------------------//
@@ -37,9 +42,10 @@ function BrowseContainer({ error, currentUser, onClick }) {
   );
   const [war, warError, warLoading] = useFetch(fetchGenres.war);
 
-  // --------------------Search Hook ---------------//
+  // --------------------Params ---------------//
 
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams('');
+  let params = useParams();
 
   //----------------------States ---------------------//
   const [genresDisplayed, setGenreDisplayed] = useState('all');
@@ -50,7 +56,8 @@ function BrowseContainer({ error, currentUser, onClick }) {
   const [posFixed, setPosFixed] = useState(false);
   const [needScroll, setNeedScroll] = useState(false);
 
-  // ------------------ Scroll header --------------------------//
+  // ------------------ Scroll --------------------------//
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -75,6 +82,10 @@ function BrowseContainer({ error, currentUser, onClick }) {
     setActiveMovieFocus(true);
     setMovieToFocus(current);
     setPosFixed(true);
+    setTimeout(() => {
+      // act asynchron, it will wait next render
+      window.scrollTo(0, 0); // scroll top when MovieFocus is rendered
+    }, 0);
   };
   const removeFilm = async function (e) {
     // triggered by cross in Movie Focus
@@ -88,11 +99,8 @@ function BrowseContainer({ error, currentUser, onClick }) {
       // page is prescrolled, now we can make pos relative + scroll immediately
       setScrollValue(-1);
       setNeedScroll(false);
-      window.scrollTo({
-        top: scrollValue,
-        behavior: 'instant',
-      });
-    }, 0);
+      window.scrollTo(0, scrollValue);
+    }, 300);
     setActiveMovieFocus(false);
   };
   // ---------------------- Styles ------------------------------//
@@ -101,11 +109,12 @@ function BrowseContainer({ error, currentUser, onClick }) {
       return {
         background: `url(https://image.tmdb.org/t/p/original${trending.results[0].backdrop_path}) no-repeat`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center center',
       };
     }
   };
   const browse_style = () => {
-    if (scrollValue > 0 && needScroll === true) {
+    if (needScroll === true) {
       return { top: `-${scrollValue}px`, position: 'relative' };
     } else if (scrollValue > 0 && posFixed) {
       return { top: `-${scrollValue}px`, position: 'fixed' };
@@ -127,6 +136,14 @@ function BrowseContainer({ error, currentUser, onClick }) {
     }
   };
 
+  useEffect(() => {
+    if (params.genre) {
+      setGenreDisplayed(params.genre);
+    } else if (!params.genre && searchParams.get('filter') === null) {
+      setGenreDisplayed('all');
+    }
+  }, [params, searchParams]);
+
   return (
     <div>
       {activeMovieFocus && (
@@ -135,120 +152,67 @@ function BrowseContainer({ error, currentUser, onClick }) {
       <div className="browse bg-grey-dark" style={browse_style()}>
         <Header bg={`fixed ${top}`}>
           <div className="browse__head flex">
-            <Logo state="not-clickable" />
-            <button onClick={onClick}>Log Out</button>
-            <input
-              value={searchParams.get('filter')}
-              onChange={handleOnChange}
-            ></input>
+            <div className="browse__head__left flex">
+              <Logo state="clickable" route="browse" />
+              <Header.BrowseNav />
+            </div>
+            <div className="browse__head__right flex">
+              <Header.BrowseSearch
+                onChange={handleOnChange}
+              ></Header.BrowseSearch>
+              <Header.BrowseOut onClick={onClick} />
+            </div>
           </div>
         </Header>
-        {genresDisplayed === 'all' ? (
-          <>
-            <div className="poster" style={poster_style()}></div>
-
-            <GenreSlider
-              title="Tendances"
-              resFetch={trending}
-              errFetch={trendingError}
-              loadFetch={trendingLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Les mieux notés"
-              resFetch={topRated}
-              errFetch={topRatedError}
-              loadFetch={topRatedLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Horreur"
-              resFetch={horror}
-              errFetch={horrorError}
-              loadFetch={horrorLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Action"
-              resFetch={action}
-              errFetch={actionError}
-              loadFetch={actionLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Aventure"
-              resFetch={adventure}
-              errFetch={adventureError}
-              loadFetch={adventureLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Films d'animation"
-              resFetch={animation}
-              errFetch={animationError}
-              loadFetch={animationLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Comédies"
-              resFetch={comedy}
-              errFetch={comedyError}
-              loadFetch={comedyLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Documentaires"
-              resFetch={documentary}
-              errFetch={documentaryError}
-              loadFetch={documentaryLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Drames"
-              resFetch={drama}
-              errFetch={dramaError}
-              loadFetch={dramaLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Fantastiques"
-              resFetch={fantasy}
-              errFetch={fantasyError}
-              loadFetch={fantasyLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Science-Fiction"
-              resFetch={scifi}
-              errFetch={scifiError}
-              loadFetch={scifiLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Romance"
-              resFetch={romance}
-              errFetch={romanceError}
-              loadFetch={romanceLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Thriller"
-              resFetch={thriller}
-              errFetch={thrillerError}
-              loadFetch={thrillerLoading}
-              displayFilm={displayFilm}
-            />
-            <GenreSlider
-              title="Guerre"
-              resFetch={war}
-              errFetch={warError}
-              loadFetch={warLoading}
-              displayFilm={displayFilm}
-            />
-          </>
-        ) : (
-          <p></p> // MovieSearch fetch +render movie card. Props displayfilm passed to Movie cardon Click
-        )}
+        <main>
+          {!searchParams.get('filter') ? (
+            <div>
+              {trending ? (
+                <HeroBannerBrowse
+                  trending={trending}
+                  style={poster_style}
+                  displayFilm={displayFilm}
+                />
+              ) : (
+                <HeroBannerBrowse.Loading />
+              )}
+              <div className="browse__genres">
+                {genresDisplayed === 'all'
+                  ? GENRES.map((item, index) => (
+                      <GenreSlider
+                        key={index}
+                        title={item.title}
+                        resFetch={eval(item.resFetch)}
+                        errFetch={eval(item.resFetch + 'Error')}
+                        loadFetch={eval(item.resFetch + 'Loading')}
+                        displayFilm={displayFilm}
+                      />
+                    ))
+                  : GENRES.filter((item) => item.name === genresDisplayed).map(
+                      (item, index) => (
+                        <GenreSlider
+                          key={index}
+                          title={item.title}
+                          resFetch={eval(item.resFetch)}
+                          errFetch={eval(item.resFetch + 'Error')}
+                          loadFetch={eval(item.resFetch + 'Loading')}
+                          displayFilm={displayFilm}
+                        />
+                      )
+                    )}
+              </div>
+            </div>
+          ) : (
+            <MovieSearch displayFilm={displayFilm} render={searchParams} /> // MovieSearch fetch +render movie card. Props displayfilm passed to Movie cardon Click
+          )}
+        </main>
+        <Footer bg="transparent">
+          <Footer.Title>
+            Des quesions ? Appelez le (+33)0805-543-063
+          </Footer.Title>
+          <Footer.Grid gridItems={FooterData.browse} />
+          <p>Netflix france</p>
+        </Footer>
       </div>
     </div>
   );

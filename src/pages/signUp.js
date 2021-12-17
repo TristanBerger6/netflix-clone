@@ -41,7 +41,7 @@ function SignUp(props) {
       <div className="signUp text-white">
         <Header>
           <div className="signUp__head flex">
-            <Logo state="clickable" />
+            <Logo state="clickable" route="home" />
           </div>
         </Header>
         <SignForm onSubmit={handleSubmit}>

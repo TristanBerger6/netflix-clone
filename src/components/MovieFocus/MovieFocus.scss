@@ -56,6 +56,7 @@
   &-container {
     opacity: 0;
     position: absolute;
+    min-height: 100vh;
     height: min-content;
     inset: 0;
     z-index: -1;

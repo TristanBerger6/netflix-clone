@@ -15,7 +15,7 @@ function SignOut(props) {
       <div className="signOut text-white">
         <Header>
           <div className="signOut__head flex">
-            <Logo state="clickable" />
+            <Logo state="clickable" route="home" />
           </div>
         </Header>
         <div className="signOut__card">

@@ -25,3 +25,7 @@ export function fetchMovie(id) {
 export function fetchVideos(id) {
   return `${URI}/movie/${id}/videos?api_key=${API_KEY}&language=fr-FR`;
 }
+
+export function fetchQuery(query) {
+  return `${URI}/search/movie?api_key=${API_KEY}&language=fr-FR&query=${query}`;
+}

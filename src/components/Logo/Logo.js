@@ -3,15 +3,31 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import './Logo.scss';
 
-function Logo({ state }) {
-  if (state === 'clickable') {
+function Logo({ state, route }) {
+  if (state === 'clickable' && route === 'home') {
     return (
       <Link to={ROUTES.HOME}>
-        <img className="nf-logo" src="./nf-logo.svg" alt="Logo netflix" />
+        <img
+          onClick={() => window.scrollTo(0, 0)}
+          className="nf-logo"
+          src="/nf-logo.svg"
+          alt="Logo netflix"
+        />
+      </Link>
+    );
+  } else if (state === 'clickable' && route === 'browse') {
+    return (
+      <Link to={ROUTES.BROWSE}>
+        <img
+          onClick={() => window.scrollTo(0, 0)}
+          className="nf-logo"
+          src="/nf-logo.svg"
+          alt="Logo netflix"
+        />
       </Link>
     );
   } else {
-    return <img className="nf-logo" src="./nf-logo.svg" alt="Logo netflix" />;
+    return <img className="nf-logo" src="/nf-logo.svg" alt="Logo netflix" />;
   }
 }
 

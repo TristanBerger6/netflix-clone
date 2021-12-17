@@ -1,11 +1,19 @@
 .browse {
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   &__head {
+    justify-content: space-between;
     width: 100%;
     height: 100%;
+    &__left {
+      --gap: 2rem;
+    }
   }
-  .poster {
-    min-height: 50vh;
+  &__genres {
+    margin-top: 3rem;
+    margin-bottom: 10rem;
   }
 }

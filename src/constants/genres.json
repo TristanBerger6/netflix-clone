@@ -1,0 +1,72 @@
+[
+    {
+        "name" :"tendances",
+        "title" : "Tendances",
+        "resFetch" : "trending"
+    },
+    {
+        "name" :"notes",
+        "title" : "Les mieux notés",
+        "resFetch" : "topRated"
+    },
+    {
+        "name" :"horreur",
+        "title" : "Horreur",
+        "resFetch" : "horror"
+    },
+    {
+        "name" :"action",
+        "title" : "Action",
+        "resFetch" : "action"
+    },
+    {
+        "name" :"aventure",
+        "title" : "Aventure",
+        "resFetch" : "adventure"
+    },
+    {
+        "name" :"animation",
+        "title" : "Films d'animation",
+        "resFetch" : "animation"
+    },
+    {
+        "name" :"comedies",
+        "title" : "Comédie",
+        "resFetch" : "comedy"
+    },
+    {
+        "name" :"documentaires",
+        "title" : "Documentaire",
+        "resFetch" : "documentary"
+    },
+    {
+        "name" :"drames",
+        "title" : "Drame",
+        "resFetch" : "drama"
+    },
+    {
+        "name" :"fantastiques",
+        "title" : "Fantastique",
+        "resFetch" : "fantasy"
+    },
+    {
+        "name" :"science-fiction",
+        "title" : "Science-Fiction",
+        "resFetch" : "scifi"
+    },
+    {
+        "name" :"romance",
+        "title" : "Romance",
+        "resFetch" : "romance"
+    },
+    {
+        "name" :"thriller",
+        "title" : "Thriller",
+        "resFetch" : "thriller"
+    },
+    {
+        "name" :"guerre",
+        "title" : "Guerre",
+        "resFetch" : "war"
+    }
+]
