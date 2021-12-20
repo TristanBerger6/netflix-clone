@@ -9,7 +9,7 @@ function Profile({ currentUser, setProfile }) {
       <Header>
         <Logo />
       </Header>
-      <div className="profile__card flex">
+      <main className="profile__card flex">
         <h1 className="fs-800"> Qui est-ce ? </h1>
         <div
           className="profile__card__user flex"
@@ -18,7 +18,7 @@ function Profile({ currentUser, setProfile }) {
           <img src="/images/user.png" alt="user profile" />
           <span className="fs-600">{currentUser.displayName}</span>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

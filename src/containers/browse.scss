@@ -16,4 +16,19 @@
     margin-top: 3rem;
     margin-bottom: 10rem;
   }
+  @media (max-width: 576px) {
+    &__head {
+      &__right,
+      &__left {
+        --gap: 0.3rem;
+        align-items: center;
+        a {
+          height: 100%;
+        }
+      }
+      &__right {
+        align-items: center;
+      }
+    }
+  }
 }

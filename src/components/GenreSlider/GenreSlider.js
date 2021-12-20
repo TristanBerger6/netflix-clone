@@ -9,7 +9,15 @@ const DIRECTIOM_TYPE = {
   prev: 'PREV',
 };
 
-function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
+function GenreSlider({
+  title,
+  resFetch,
+  errFetch,
+  loadFetch,
+  displayFilm,
+  currentlyDisplayed,
+  needFocus,
+}) {
   // ----   media query ---------------------//
   const isDesktop = useMediaQuery({
     query: '(min-width: 576px)',
@@ -24,6 +32,7 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
   const [needTransition, setNeedTransition] = useState(true);
   const [direction, setDirection] = useState('');
   const [hoverFilm, setHoverFilm] = useState(); // id of he film hovered
+  const [focusFirst, setFocusFirst] = useState(''); // focus first film after prev or next for accessibility
 
   // ---------- Slider functions ----------------//
   const handleSliderTranslateEnd = (e) => {
@@ -66,6 +75,7 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
     setNeedTransition(true);
     setCurrent(_current);
     setDirection(DIRECTIOM_TYPE.next);
+    setFocusFirst(true);
   };
 
   const handlePrev = () => {
@@ -74,6 +84,7 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
     setNeedTransition(true);
     setCurrent(_current);
     setDirection(DIRECTIOM_TYPE.prev);
+    setFocusFirst(true);
   };
 
   const transLateVal = () => {
@@ -146,12 +157,6 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
       <div className="genre">
         <h2 className="text-white">{title}</h2>
         <div className="genre__wrapper ">
-          <div className="genre__left-arrow" onClick={handlePrev}>
-            <img src="/images/chevron-right.png" alt="left arrow" />
-          </div>
-          <div className="genre__right-arrow" onClick={handleNext}>
-            <img src="/images/chevron-right.png" alt="right arrow" />
-          </div>
           <div
             className="genre__slider flex"
             style={sliderStyle()}
@@ -168,16 +173,31 @@ function GenreSlider({ title, resFetch, errFetch, loadFetch, displayFilm }) {
                 onClick={handleClick}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+                tabIndex={
+                  index < current * nbFilms ||
+                  index > nbFilms * (current + 1) - 1
+                    ? '-1'
+                    : '0'
+                }
+                focusFirst={index === current * nbFilms ? focusFirst : null}
+                currentlyDisplayed={currentlyDisplayed}
+                needFocus={needFocus}
               />
             ))}
           </div>
+          <button className="genre__left-arrow" onClick={handlePrev}>
+            <img src="/images/chevron-right.png" alt="left arrow" />
+          </button>
+          <button className="genre__right-arrow" onClick={handleNext}>
+            <img src="/images/chevron-right.png" alt="right arrow" />
+          </button>
         </div>
       </div>
     );
   } else if (loadFetch) {
     return (
       <div className="genre-loading bg-black text-white fw-700 fs-600">
-        <img src="/loading.gif" alt=" loading gif" />
+        <img src="/images/loading.gif" alt=" loading gif" />
       </div>
     );
   } else if (errFetch) {

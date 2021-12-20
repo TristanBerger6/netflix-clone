@@ -42,40 +42,42 @@ function SignIn(props) {
             <Logo state="clickable" route="home" />
           </div>
         </Header>
-        <SignForm onSubmit={handleSubmit}>
-          <h1 className="fs-800">S'identifier</h1>
-          {error && <SignForm.Error>{error}</SignForm.Error>}
-          <SignForm.Label id="email">
-            Entrez votre adresse e-mail
-          </SignForm.Label>
-          <SignForm.Input
-            placeholder="E-mail"
-            type="email"
-            id="email"
-            onChange={({ target }) => setEmailAddress(target.value)}
-            value={emailAddress}
-          />
-          <SignForm.Label id="mdp">Entrez votre mot de passe</SignForm.Label>
-          <SignForm.Input
-            placeholder="Mot de passe"
-            type="password"
-            id="mdp"
-            onChange={({ target }) => setPassword(target.value)}
-            value={password}
-          />
-          <SignForm.Submit disabled={loading}> S'identifier </SignForm.Submit>
-          <p className="text-grey">
-            <Link to={ROUTES.RESET_PASSWORD} className="text-white link">
-              Mot de passe oublié ?
-            </Link>
-          </p>
-          <p className="text-grey">
-            Première visite sur Netflix ?{' '}
-            <Link to={ROUTES.SIGN_UP} className="text-white link">
-              Inscrivez-vous
-            </Link>
-          </p>
-        </SignForm>
+        <main>
+          <SignForm onSubmit={handleSubmit}>
+            <h1 className="fs-800">S'identifier</h1>
+            {error && <SignForm.Error>{error}</SignForm.Error>}
+            <SignForm.Label id="email">
+              Entrez votre adresse e-mail
+            </SignForm.Label>
+            <SignForm.Input
+              placeholder="E-mail"
+              type="email"
+              id="email"
+              onChange={({ target }) => setEmailAddress(target.value)}
+              value={emailAddress}
+            />
+            <SignForm.Label id="mdp">Entrez votre mot de passe</SignForm.Label>
+            <SignForm.Input
+              placeholder="Mot de passe"
+              type="password"
+              id="mdp"
+              onChange={({ target }) => setPassword(target.value)}
+              value={password}
+            />
+            <SignForm.Submit disabled={loading}> S'identifier </SignForm.Submit>
+            <p className="text-grey">
+              <Link to={ROUTES.RESET_PASSWORD} className="text-white link">
+                Mot de passe oublié ?
+              </Link>
+            </p>
+            <p className="text-grey">
+              Première visite sur Netflix ?{' '}
+              <Link to={ROUTES.SIGN_UP} className="text-white link">
+                Inscrivez-vous
+              </Link>
+            </p>
+          </SignForm>
+        </main>
 
         <Footer bg="rgba(0,0,0,0.8)">
           <Footer.Title>

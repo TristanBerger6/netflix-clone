@@ -21,12 +21,12 @@ function Home(props) {
             <SignInBtn />
           </div>
         </Header>
-        <div className="home__card">
+        <div className="home__card" role="region">
           <h1 className="fs-800">Films, séries TV et bien plus en illimité</h1>
           <h2 className="fs-600 fw-400">
             Où que vous soyez. Annulez à tout moment.
           </h2>
-          <SubForm />
+          <SubForm num="1" />
         </div>
       </HeroBanner>
 

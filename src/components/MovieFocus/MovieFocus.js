@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './MovieFocus.scss';
 import { fetchMovie, fetchVideos } from '../../constants/requests';
 import { useFetch } from '../../utils/useFetch';
-import { useEffect, useState } from 'react/cjs/react.development';
 
 function MovieFocus({ movieToFocus, removeFilm }) {
   const [active, setActive] = useState('');
@@ -15,14 +14,27 @@ function MovieFocus({ movieToFocus, removeFilm }) {
   const [videoUrl, setVideoUrl] = useState('');
   const [timeoutId, setTimeoutId] = useState('');
 
+  const ref = useRef();
+
   const handleClick = () => {
     window.scrollTo(0, 0);
     removeFilm();
   };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 9) {
+      ref.current.focus();
+    }
+    if (e.keyCode === 27) {
+      handleClick();
+    }
+  };
+
   useEffect(() => {
     // to trigger the transition between non-active and active state
     setTimeout(() => {
       setActive('active');
+      ref.current.focus();
     }, 1);
   }, []);
 
@@ -57,7 +69,12 @@ function MovieFocus({ movieToFocus, removeFilm }) {
 
   if (movieInfos && movieVideos) {
     return (
-      <div className={`film-focus-container ${active}`}>
+      <div
+        className={`film-focus-container ${active}`}
+        tabIndex="-1"
+        ref={ref}
+        onKeyDown={handleKeyDown}
+      >
         <div className="film-focus text-white">
           <div>
             <div className="film-focus__img flex">
@@ -99,21 +116,30 @@ function MovieFocus({ movieToFocus, removeFilm }) {
             </div>
           </div>
 
-          <div className="film-focus__close" onClick={handleClick}>
+          <button
+            className="film-focus__close"
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+          >
             <img src="/images/close.png" alt="close" />
-          </div>
+          </button>
         </div>
       </div>
     );
   } else if (movieInfosLoading || movieVideosLoading) {
     return (
-      <div className={`film-focus-container `}>
+      <div className={`film-focus-container `} tabIndex="-1" ref={ref}>
         <div className="empty"></div>;
       </div>
     );
   } else if (movieInfosError || movieVideosError) {
     return (
-      <div className={`film-focus-container ${active}`}>
+      <div
+        className={`film-focus-container ${active}`}
+        tabI
+        ndex="-1"
+        ref={ref}
+      >
         <div className="film-focus text-white">
           <div className="film-focus-error">Error</div>
           <div className="film-focus__close" onClick={removeFilm}>

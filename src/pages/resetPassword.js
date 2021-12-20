@@ -41,28 +41,30 @@ function ResetPassword(props) {
             <Logo state="clickable" route="home" />
           </div>
         </Header>
-        <SignForm onSubmit={handleSubmit}>
-          <h1 className="fs-800">Réinitialiser mot de passe</h1>
-          {error && <SignForm.Error>{error}</SignForm.Error>}
-          {message && <SignForm.Message>{message}</SignForm.Message>}
-          <SignForm.Label id="email">
-            Entrez votre adresse e-mail
-          </SignForm.Label>
-          <SignForm.Input
-            placeholder="E-mail"
-            type="email"
-            id="email"
-            onChange={({ target }) => setEmailAddress(target.value)}
-            value={emailAddress}
-          />
+        <main>
+          <SignForm onSubmit={handleSubmit}>
+            <h1 className="fs-800">Réinitialiser mot de passe</h1>
+            {error && <SignForm.Error>{error}</SignForm.Error>}
+            {message && <SignForm.Message>{message}</SignForm.Message>}
+            <SignForm.Label id="email">
+              Entrez votre adresse e-mail
+            </SignForm.Label>
+            <SignForm.Input
+              placeholder="E-mail"
+              type="email"
+              id="email"
+              onChange={({ target }) => setEmailAddress(target.value)}
+              value={emailAddress}
+            />
 
-          <SignForm.Submit disabled={loading}> Envoyer </SignForm.Submit>
-          <p className="text-grey">
-            <Link to={ROUTES.SIGN_IN} className="text-white link">
-              Connectez vous
-            </Link>
-          </p>
-        </SignForm>
+            <SignForm.Submit disabled={loading}> Envoyer </SignForm.Submit>
+            <p className="text-grey">
+              <Link to={ROUTES.SIGN_IN} className="text-white link">
+                Connectez vous
+              </Link>
+            </p>
+          </SignForm>
+        </main>
 
         <Footer bg="rgba(0,0,0,0.8)">
           <Footer.Title>

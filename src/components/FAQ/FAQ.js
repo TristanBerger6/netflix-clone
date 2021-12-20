@@ -13,7 +13,7 @@ function FAQ(props) {
             <FAQ.Item key={item.id} item={item} />
           ))}
         </ul>
-        <SubForm />
+        <SubForm num="2" />
       </div>
     </div>
   );

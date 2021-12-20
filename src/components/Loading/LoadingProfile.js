@@ -9,14 +9,14 @@ function LoadingProfile(props) {
       <Header>
         <Logo />
       </Header>
-      <div className="loadingProfile__card ">
+      <main className="loadingProfile__card ">
         <div className="loadingProfile__card__spinner ">
           <img src="/images/spinner.png" alt="spinner" />
         </div>
         <div className="loadingProfile__card__user ">
           <img src="/images/user.png" alt="user profile" />
         </div>
-      </div>
+      </main>
     </div>
   );
 }

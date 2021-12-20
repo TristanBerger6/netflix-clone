@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSearchParams, useParams, Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import './browse.scss';
 import { useFetch } from '../utils/useFetch';
 import { fetchGenres } from '../constants/requests';
@@ -42,10 +43,20 @@ function BrowseContainer({ error, currentUser, onClick }) {
   );
   const [war, warError, warLoading] = useFetch(fetchGenres.war);
 
+  // -----------   media query ---------------------//
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 769px)',
+  });
+
   // --------------------Params ---------------//
 
   let [searchParams, setSearchParams] = useSearchParams('');
   let params = useParams();
+
+  // ----------------- Accessiblity --------------//
+
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState();
+  const [needFocus, setNeedFocus] = useState(false);
 
   //----------------------States ---------------------//
   const [genresDisplayed, setGenreDisplayed] = useState('all');
@@ -79,12 +90,16 @@ function BrowseContainer({ error, currentUser, onClick }) {
 
   const displayFilm = (current) => {
     // triggered by MovieCard on click
+    setNeedFocus(false);
     setActiveMovieFocus(true);
     setMovieToFocus(current);
     setPosFixed(true);
     setTimeout(() => {
       // act asynchron, it will wait next render
       window.scrollTo(0, 0); // scroll top when MovieFocus is rendered
+      current !== trending.results[0]
+        ? setCurrentlyDisplayed(current)
+        : setCurrentlyDisplayed();
     }, 0);
   };
   const removeFilm = async function (e) {
@@ -100,6 +115,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
       setScrollValue(-1);
       setNeedScroll(false);
       window.scrollTo(0, scrollValue);
+      setNeedFocus(true);
     }, 300);
     setActiveMovieFocus(false);
   };
@@ -151,6 +167,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
       )}
       <div className="browse bg-grey-dark" style={browse_style()}>
         <Header bg={`fixed ${top}`}>
+          <h1 class="sr-only">Accueil Netflix</h1>
           <div className="browse__head flex">
             <div className="browse__head__left flex">
               <Logo state="clickable" route="browse" />
@@ -164,6 +181,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
             </div>
           </div>
         </Header>
+
         <main>
           {!searchParams.get('filter') ? (
             <div>
@@ -186,6 +204,8 @@ function BrowseContainer({ error, currentUser, onClick }) {
                         errFetch={eval(item.resFetch + 'Error')}
                         loadFetch={eval(item.resFetch + 'Loading')}
                         displayFilm={displayFilm}
+                        currentlyDisplayed={currentlyDisplayed}
+                        needFocus={needFocus}
                       />
                     ))
                   : GENRES.filter((item) => item.name === genresDisplayed).map(
@@ -197,6 +217,8 @@ function BrowseContainer({ error, currentUser, onClick }) {
                           errFetch={eval(item.resFetch + 'Error')}
                           loadFetch={eval(item.resFetch + 'Loading')}
                           displayFilm={displayFilm}
+                          currentlyDisplayed={currentlyDisplayed}
+                          needFocus={needFocus}
                         />
                       )
                     )}

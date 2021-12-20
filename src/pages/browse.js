@@ -15,7 +15,6 @@ function Browse(props) {
   const { currentUser, signout } = useAuth();
 
   const navigate = useNavigate();
-  let params = useParams();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -32,7 +31,7 @@ function Browse(props) {
     setError('');
     try {
       await signout();
-      navigate(ROUTES.HOME);
+      navigate(ROUTES.SIGN_OUT);
     } catch (error) {
       setError(error);
     }

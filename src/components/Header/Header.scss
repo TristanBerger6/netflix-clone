@@ -1,5 +1,5 @@
-header {
-  height: 4em;
+.header-desktop {
+  height: 4rem;
   padding-top: calc(20px + 0.5rem);
   margin: 0 5%;
   &.fixed {
@@ -48,16 +48,37 @@ header {
     &.open {
       width: 15rem;
       padding-left: 3rem;
+      padding-right: 3rem;
     }
   }
-  &__btn {
+  &__btn,
+  &__close {
     position: absolute;
-    left: 0;
     background: none;
     border: none;
     cursor: pointer;
     filter: invert(1);
+  }
+  &__btn {
+    left: 0;
     padding: 0.2rem;
+  }
+  &__close {
+    right: 0;
+    padding: 0.5rem;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+  @media (max-width: 576px) {
+    height: 60%;
+    &__input {
+      &.open {
+        width: 5rem;
+        padding-left: 1.2rem;
+      }
+    }
   }
 }
 
@@ -71,9 +92,11 @@ header {
     padding-left: 1rem;
     font-weight: 700;
     cursor: pointer;
-    &:hover,
-    &:focus {
+    &:hover {
       background: rgba(0, 0, 0, 0.3);
+    }
+    &:focus {
+      background: rgba(0, 0, 0, 0.9);
     }
 
     img {
@@ -90,7 +113,7 @@ header {
     --gap: 0.5rem;
 
     opacity: 0;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
     li {
       &:first-child {
         a {
@@ -117,6 +140,18 @@ header {
       }
     }
   }
+  @media (max-width: 576px) {
+    height: 60%;
+    font-size: var(--fs-300);
+    &__btn {
+      padding-left: 0.5rem;
+    }
+    &__list {
+      a {
+        padding: 0 0.5rem;
+      }
+    }
+  }
 }
 
 .header-browse-out {
@@ -128,5 +163,11 @@ header {
   cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.3);
+  }
+  @media (max-width: 576px) {
+    display: grid;
+    height: 60%;
+    font-size: var(--fs-300);
+    padding: 0.2rem 0.3rem;
   }
 }

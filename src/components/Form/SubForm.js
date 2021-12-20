@@ -1,7 +1,7 @@
 import React from 'react';
 import './SubForm.scss';
 
-function SubForm(props) {
+function SubForm({ num }) {
   return (
     <form className="subForm">
       <h3 className="fs-600 fw-400">
@@ -9,12 +9,12 @@ function SubForm(props) {
         abonner ou réactiver votre abonnement
       </h3>
       <div className="subForm__block flex">
-        <label htmlFor="email-address" className="sr-only">
+        <label htmlFor={`email-address${num}`} className="sr-only">
           Saisir l'addresse e-mail
         </label>
         <input
           type="text"
-          id="email-address"
+          id={`email-address${num}`}
           placeholder="Adresse e-mail"
           className="fs-400"
         ></input>

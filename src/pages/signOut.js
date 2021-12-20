@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import './signOut.scss';
 
@@ -8,8 +8,21 @@ import Header from '../components/Header/Header';
 import Logo from '../components/Logo/Logo';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/Footer.json';
+import { useEffect } from 'react/cjs/react.development';
 
 function SignOut(props) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      navigate(ROUTES.HOME);
+    }, 15000);
+
+    return () => {
+      clearTimeout(id);
+    };
+  });
+
   return (
     <HeroBanner bg="bg-signout">
       <div className="signOut text-white">
@@ -18,7 +31,7 @@ function SignOut(props) {
             <Logo state="clickable" route="home" />
           </div>
         </Header>
-        <div className="signOut__card">
+        <main className="signOut__card">
           <div className="signOut__card__content bg-white text-grey">
             <h1 className="fw-400">Vous partez déjà ?</h1>
             <p>
@@ -33,7 +46,7 @@ function SignOut(props) {
               Essayer maintenant
             </Link>
           </div>
-        </div>
+        </main>
 
         <Footer bg="rgba(0,0,0,0.8)">
           <Footer.Title>
