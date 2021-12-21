@@ -146,8 +146,8 @@ Header.BrowseNav = function HeaderBrowseNav() {
         className="header-browse-nav__btn text-white flex"
         aria-haspopup="true"
         onClick={handleClick}
-        onKeyDown={(e) => (e.keyCode === 9 ? setHover(true) : null)} // tab => go to list of links
-        onBlur={() => (hover ? null : setOpen(false))} // close if no hover, otherwise, means that a link is clicked
+        onKeyDown={(e) => (e.keyCode === 9 ? setHover(true) : null)}
+        onBlur={() => (hover ? null : setOpen(false))}
       >
         Genres
         <img
@@ -170,7 +170,7 @@ Header.BrowseNav = function HeaderBrowseNav() {
                 onMouseLeave={() => setHover(false)}
                 onKeyDown={handleKeyDown}
                 tabIndex={index === tabFocus ? '0' : '-1'}
-                ref={index === tabFocus ? callbackRef : null} // handle focus if tab is focused
+                ref={index === tabFocus ? callbackRef : null}
               >
                 {item.title}
               </Link>
