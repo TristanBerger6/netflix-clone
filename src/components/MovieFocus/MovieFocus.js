@@ -81,7 +81,7 @@ function MovieFocus({ movieToFocus, removeMovie }) {
             <div className="movie-focus__img flex">
               <img
                 src={`https://image.tmdb.org/t/p/original${movieInfos.backdrop_path}`}
-                alt="item.title"
+                alt={movieInfos.title}
               />
             </div>
             <div className="movie-focus__text flex">
@@ -122,7 +122,10 @@ function MovieFocus({ movieToFocus, removeMovie }) {
             onClick={handleClick}
             onKeyDown={handleKeyDown}
           >
-            <img src="/images/close.png" alt="close" />
+            <img
+              src={process.env.PUBLIC_URL + '/images/close.png'}
+              alt="close"
+            />
           </button>
         </div>
       </div>
@@ -143,7 +146,10 @@ function MovieFocus({ movieToFocus, removeMovie }) {
         <div className="movie-focus text-white">
           <div className="movie-focus-error">Error</div>
           <div className="movie-focus__close" onClick={removeMovie}>
-            <img src="./images/close.png" alt="close" />
+            <img
+              src={process.env.PUBLIC_URL + './images/close.png'}
+              alt="close"
+            />
           </div>
         </div>
       </div>

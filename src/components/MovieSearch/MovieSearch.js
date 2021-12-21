@@ -56,7 +56,10 @@ function MovieSearch({ displayMovie }) {
   } else if (loading) {
     return (
       <div className="movie-search bg-black ">
-        <img src="./images/loading.gif" alt=" loading gif" />
+        <img
+          src={process.env.PUBLIC_URL + '/images/loading.gif'}
+          alt=" loading gif"
+        />
       </div>
     );
   } else {

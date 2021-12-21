@@ -112,6 +112,7 @@ function BrowseContainer({ onClick }) {
       setNeedScroll(false);
       window.scrollTo(0, scrollValue);
       setNeedFocus(true);
+      setTimeout(() => setNeedFocus(false), 10);
     }, 100);
     setActiveMovieFocus(false);
   };

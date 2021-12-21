@@ -34,9 +34,15 @@ FAQ.Item = function FAQItem({ item }) {
       >
         {item.header}
         {state === 'closed' ? (
-          <img src="./images/add.png" alt="click to open"></img>
+          <img
+            src={process.env.PUBLIC_URL + '/images/add.png'}
+            alt="click to open"
+          ></img>
         ) : (
-          <img src="./images/close-slim.png" alt="click to open"></img>
+          <img
+            src={process.env.PUBLIC_URL + '/images/close-slim.png'}
+            alt="click to open"
+          ></img>
         )}
       </button>
       <div className={'faq__item__answer-wrapper ' + state}>

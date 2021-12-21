@@ -40,7 +40,10 @@ function HeroBannerBrowse({ trending, style, displayMovie }) {
 HeroBannerBrowse.Loading = function HeroBannerBrowseLoading() {
   return (
     <div className="banner-browse-loading">
-      <img src="./images/loading.gif" alt=" loading gif" />
+      <img
+        src={process.env.PUBLIC_URL + '/images/loading.gif'}
+        alt=" loading gif"
+      />
     </div>
   );
 };

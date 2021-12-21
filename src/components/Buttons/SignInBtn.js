@@ -5,7 +5,10 @@ import './SignInBtn.scss';
 
 function SignInBtn(props) {
   return (
-    <Link to={ROUTES.SIGN_IN} className="btn signInBtn">
+    <Link
+      to={process.env.PUBLIC_URL + ROUTES.SIGN_IN}
+      className="btn signInBtn"
+    >
       S'identifier
     </Link>
   );

@@ -15,7 +15,10 @@ function Profile({ currentUser, setProfile }) {
           className="profile__card__user flex"
           onClick={() => setProfile(currentUser.displayName)}
         >
-          <img src="/images/user.png" alt="user profile" />
+          <img
+            src={process.env.PUBLIC_URL + '/images/user.png'}
+            alt="user profile"
+          />
           <span className="fs-600">{currentUser.displayName}</span>
         </div>
       </main>

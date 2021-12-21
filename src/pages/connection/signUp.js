@@ -78,7 +78,10 @@ function SignUp(props) {
             <SignForm.Submit disabled={loading}> S'inscrire </SignForm.Submit>
             <p className="text-grey">
               Vous avez déjà un compte ?{' '}
-              <Link to={ROUTES.SIGN_IN} className="text-white link">
+              <Link
+                to={process.env.PUBLIC_URL + ROUTES.SIGN_IN}
+                className="text-white link"
+              >
                 Connectez vous
               </Link>
             </p>

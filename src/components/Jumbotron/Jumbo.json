@@ -3,7 +3,7 @@
       "id": 1,
       "title": "Regardez Netflix sur votre TV",
       "subTitle": "Regardez Netflix sur votre Smart TV, Playstation, Xbox, Chromecast, Apple TV, lecteurs Blu-ray et bien plus.",
-      "image": "./images/home-tv.jpg",
+      "image": "/images/home-tv.jpg",
       "alt": "Tiger King sur Netflix",
       "direction": ""
     },

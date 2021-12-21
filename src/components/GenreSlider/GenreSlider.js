@@ -192,10 +192,16 @@ function GenreSlider({
             ))}
           </div>
           <button className="genre__left-arrow" onClick={handlePrev}>
-            <img src="/images/chevron-right.png" alt="left arrow" />
+            <img
+              src={process.env.PUBLIC_URL + '/images/chevron-right.png'}
+              alt="left arrow"
+            />
           </button>
           <button className="genre__right-arrow" onClick={handleNext}>
-            <img src="/images/chevron-right.png" alt="right arrow" />
+            <img
+              src={process.env.PUBLIC_URL + '/images/chevron-right.png'}
+              alt="right arrow"
+            />
           </button>
         </div>
       </div>
@@ -203,7 +209,10 @@ function GenreSlider({
   } else if (loadFetch) {
     return (
       <div className="genre-loading bg-black text-white fw-700 fs-600">
-        <img src="/images/loading.gif" alt=" loading gif" />
+        <img
+          src={process.env.PUBLIC_URL + '/images/loading.gif'}
+          alt=" loading gif"
+        />
       </div>
     );
   } else if (errFetch) {

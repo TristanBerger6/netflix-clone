@@ -9,7 +9,7 @@ function HeroBanner({ children, bg }) {
         className={'hero__bg ' + bg}
         aria-hidden="true"
         style={{
-          background: `url('/images/${bg}.jpg') no-repeat`,
+          background: `url('${process.env.PUBLIC_URL}/images/${bg}.jpg') no-repeat`,
           backgroundSize: 'cover',
         }}
       ></div>

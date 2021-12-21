@@ -20,7 +20,7 @@ Jumbotron.Item = function JumbotronItem({ item }) {
           <h2 className="fs-700">{item.title}</h2>
           <p className="fs-600">{item.subTitle}</p>
         </div>
-        <img src={item.image} alt={item.alt} />
+        <img src={process.env.PUBLIC_URL + item.image} alt={item.alt} />
       </div>
     </div>
   );

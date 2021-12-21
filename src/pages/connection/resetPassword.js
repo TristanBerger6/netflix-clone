@@ -59,7 +59,10 @@ function ResetPassword(props) {
 
             <SignForm.Submit disabled={loading}> Envoyer </SignForm.Submit>
             <p className="text-grey">
-              <Link to={ROUTES.SIGN_IN} className="text-white link">
+              <Link
+                to={process.env.PUBLIC_URL + ROUTES.SIGN_IN}
+                className="text-white link"
+              >
                 Connectez vous
               </Link>
             </p>

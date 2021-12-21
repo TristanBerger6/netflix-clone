@@ -11,10 +11,16 @@ function LoadingProfile(props) {
       </Header>
       <main className="loadingProfile__card ">
         <div className="loadingProfile__card__spinner ">
-          <img src="/images/spinner.png" alt="spinner" />
+          <img
+            src={process.env.PUBLIC_URL + '/images/spinner.png'}
+            alt="spinner"
+          />
         </div>
         <div className="loadingProfile__card__user ">
-          <img src="/images/user.png" alt="user profile" />
+          <img
+            src={process.env.PUBLIC_URL + '/images/user.png'}
+            alt="user profile"
+          />
         </div>
       </main>
     </div>

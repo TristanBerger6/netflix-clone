@@ -31,7 +31,7 @@ function Browse(props) {
     setError('');
     try {
       await signout();
-      navigate(ROUTES.SIGN_OUT);
+      navigate(process.env.PUBLIC_URL + ROUTES.SIGN_OUT);
     } catch (error) {
       setError(error);
     }

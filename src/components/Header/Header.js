@@ -53,7 +53,7 @@ Header.BrowseSearch = function HeaderBrowseSearch({ onChange }) {
         className="header-browse-search__btn"
         onClick={handleClickSearch}
         onKeyDown={(e) => (e.keyCode === 13 ? handleClickSearch() : null)}
-        src="/images/search.png"
+        src={process.env.PUBLIC_URL + '/images/search.png'}
         alt="search icon"
         role="button"
         tabIndex="0"
@@ -76,7 +76,7 @@ Header.BrowseSearch = function HeaderBrowseSearch({ onChange }) {
         className={`header-browse-search__close ${closeActive ? 'active' : ''}`}
         onClick={handleClickClose}
         onKeyDown={(e) => (e.keyCode === 13 ? handleClickClose() : null)}
-        src="/images/close-slim.png"
+        src={process.env.PUBLIC_URL + '/images/close-slim.png'}
         alt="close icon"
         role="button"
         tabIndex="0"
@@ -150,7 +150,10 @@ Header.BrowseNav = function HeaderBrowseNav() {
         onBlur={() => (hover ? null : setOpen(false))} // close if no hover, otherwise, means that a link is clicked
       >
         Genres
-        <img src="/images/chevron-right.png" alt="chevron"></img>
+        <img
+          src={process.env.PUBLIC_URL + '/images/chevron-right.png'}
+          alt="chevron"
+        />
       </button>
       {open && (
         <ul
