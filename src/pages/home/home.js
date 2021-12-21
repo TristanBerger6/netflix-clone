@@ -1,15 +1,15 @@
 import React from 'react';
 import './home.scss';
 
-import HeroBanner from '../components/HeroBanner/HeroBanner';
-import Header from '../components/Header/Header';
-import Logo from './../components/Logo/Logo';
-import SignInBtn from '../components/Buttons/SignInBtn';
-import SubForm from './../components/Form/SubForm';
-import Jumbotron from '../components/Jumbotron/Jumbotron';
-import FAQ from '../components/FAQ/FAQ';
-import Footer from '../components/Footer/Footer';
-import FooterData from '../components/Footer/Footer.json';
+import HeroBanner from '../../components/HeroBanner/HeroBanner';
+import Header from '../../components/Header/Header';
+import Logo from '../../components/Logo/Logo';
+import SignInBtn from '../../components/Buttons/SignInBtn';
+import SubForm from '../../components/Form/SubForm';
+import Jumbotron from '../../components/Jumbotron/Jumbotron';
+import FAQ from '../../components/FAQ/FAQ';
+import Footer from '../../components/Footer/Footer';
+import FooterData from '../../components/Footer/Footer.json';
 
 function Home(props) {
   return (

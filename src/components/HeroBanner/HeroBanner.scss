@@ -2,14 +2,6 @@
   position: relative;
   z-index: 99;
 
-  &__bg.bg-signout {
-    background: url('../../images/bg-signout.jpg') no-repeat;
-    background-size: cover;
-  }
-  &__bg.bg-home {
-    background: url('../../images/bg-home.jpg');
-    background-size: cover;
-  }
   &__bg {
     position: absolute;
     inset: 0;

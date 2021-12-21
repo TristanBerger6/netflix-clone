@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../../constants/routes';
 import './resetPassword.scss';
 
-import HeroBanner from '../components/HeroBanner/HeroBanner';
-import Header from '../components/Header/Header';
-import Logo from '../components/Logo/Logo';
-import Footer from '../components/Footer/Footer';
-import FooterData from '../components/Footer/Footer.json';
-import SignForm from '../components/Form/SignForm';
+import HeroBanner from '../../components/HeroBanner/HeroBanner';
+import Header from '../../components/Header/Header';
+import Logo from '../../components/Logo/Logo';
+import Footer from '../../components/Footer/Footer';
+import FooterData from '../../components/Footer/Footer.json';
+import SignForm from '../../components/Form/SignForm';
 
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function ResetPassword(props) {
   const [emailAddress, setEmailAddress] = useState('');

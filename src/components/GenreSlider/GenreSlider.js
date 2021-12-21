@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react/cjs/react.development';
 import './GenreSlider.scss';
 import { useMediaQuery } from 'react-responsive';
@@ -14,7 +15,7 @@ function GenreSlider({
   resFetch,
   errFetch,
   loadFetch,
-  displayFilm,
+  displayMovie,
   currentlyDisplayed,
   needFocus,
 }) {
@@ -23,16 +24,16 @@ function GenreSlider({
     query: '(min-width: 576px)',
   });
 
-  let nbFilms;
-  isDesktop ? (nbFilms = 6) : (nbFilms = 4);
+  let nbMovies;
+  isDesktop ? (nbMovies = 6) : (nbMovies = 4);
 
   // --------- States -------------------------//
-  const [films, setFilms] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [current, setCurrent] = useState(1); // 20 slides, 6 slides per vw. 0 => 0-6 1 => 7-12 2=> 13-18
   const [needTransition, setNeedTransition] = useState(true);
   const [direction, setDirection] = useState('');
-  const [hoverFilm, setHoverFilm] = useState(); // id of he film hovered
-  const [focusFirst, setFocusFirst] = useState(''); // focus first film after prev or next for accessibility
+  const [hoverMovie, setHoverMovie] = useState(); // id of he movie hovered
+  const [focusFirst, setFocusFirst] = useState(false); // focus first movie after prev or next for accessibility
 
   // ---------- Slider functions ----------------//
   const handleSliderTranslateEnd = (e) => {
@@ -54,19 +55,24 @@ function GenreSlider({
   const validNextSlider = () => {
     let _current = current;
     _current -= 1;
-    const _films = [...films, ...films.slice(0, nbFilms)].slice(-films.length);
+    const _movies = [...movies, ...movies.slice(0, nbMovies)].slice(
+      -movies.length
+    );
     setNeedTransition(false);
     setCurrent(_current);
-    setFilms(_films);
+    setMovies(_movies);
   };
 
   const validPrevSlider = () => {
     let _current = current;
     _current += 1;
-    const _films = [...films.slice(-nbFilms), ...films].slice(0, films.length);
+    const _movies = [...movies.slice(-nbMovies), ...movies].slice(
+      0,
+      movies.length
+    );
     setNeedTransition(false);
     setCurrent(_current);
-    setFilms(_films);
+    setMovies(_movies);
   };
 
   const handleNext = () => {
@@ -107,48 +113,48 @@ function GenreSlider({
     };
   };
 
-  const filmStyle = (id, index) => {
-    if (id === hoverFilm) {
-      if (index === current * nbFilms) {
+  const movieStyle = (id, index) => {
+    if (id === hoverMovie) {
+      if (index === current * nbMovies) {
         return {
-          minWidth: `calc(100%/${nbFilms})`,
+          minWidth: `calc(100%/${nbMovies})`,
           transform: `scale(1.2) translateX(10%)`,
         };
       }
-      if (index === current * nbFilms + nbFilms - 1) {
+      if (index === current * nbMovies + nbMovies - 1) {
         return {
-          minWidth: `calc(100%/${nbFilms})`,
+          minWidth: `calc(100%/${nbMovies})`,
           transform: `scale(1.2) translateX(-10%)`,
         };
       }
       return {
-        minWidth: `calc(100%/${nbFilms})`,
+        minWidth: `calc(100%/${nbMovies})`,
         transform: `scale(1.2)`,
       };
     }
 
     return {
-      minWidth: `calc(100%/${nbFilms})`,
+      minWidth: `calc(100%/${nbMovies})`,
     };
   };
 
-  //----- Film clicked or hovered ------ //
+  //----- Movie clicked or hovered ------ //
   const handleMouseEnter = (e, id) => {
-    setHoverFilm(id);
+    setHoverMovie(id);
   };
   const handleMouseLeave = (e, id) => {
-    setHoverFilm();
+    setHoverMovie();
   };
 
   const handleClick = (e, id) => {
     e.preventDefault();
-    const current = films.find((item) => item.id === id);
-    displayFilm(current);
+    const current = movies.find((item) => item.id === id);
+    displayMovie(current);
   };
 
   useEffect(() => {
     if (resFetch) {
-      setFilms(resFetch.results);
+      setMovies(resFetch.results);
     }
   }, [resFetch]);
 
@@ -164,22 +170,22 @@ function GenreSlider({
               handleSliderTranslateEnd(e);
             }}
           >
-            {films.map((item, index) => (
+            {movies.map((item, index) => (
               <MovieCard
                 key={index}
-                style={filmStyle}
+                style={movieStyle}
                 item={item}
                 index={index}
                 onClick={handleClick}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 tabIndex={
-                  index < current * nbFilms ||
-                  index > nbFilms * (current + 1) - 1
+                  index < current * nbMovies ||
+                  index > nbMovies * (current + 1) - 1
                     ? '-1'
                     : '0'
                 }
-                focusFirst={index === current * nbFilms ? focusFirst : null}
+                focusFirst={index === current * nbMovies ? focusFirst : false}
                 currentlyDisplayed={currentlyDisplayed}
                 needFocus={needFocus}
               />
@@ -208,5 +214,15 @@ function GenreSlider({
     );
   }
 }
+
+GenreSlider.propTypes = {
+  title: PropTypes.string,
+  resFetch: PropTypes.object,
+  errFetch: PropTypes.object,
+  loadFetch: PropTypes.bool,
+  displayMovie: PropTypes.func,
+  currentlyDisplayed: PropTypes.object,
+  needFocus: PropTypes.bool,
+};
 
 export default GenreSlider;

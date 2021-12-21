@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './MovieCard.scss';
 
 function MovieCard({
@@ -13,15 +14,6 @@ function MovieCard({
   currentlyDisplayed,
   needFocus,
 }) {
-  const handleMouseEnter = (e, id) => {
-    onMouseEnter(e, id);
-  };
-  const handleMouseLeave = (e, id) => {
-    onMouseLeave(e, id);
-  };
-  const handleClick = (e, id) => {
-    onClick(e, id);
-  };
   const ref = useRef();
   useEffect(() => {
     if (focusFirst) {
@@ -44,13 +36,13 @@ function MovieCard({
       key={item.id}
       style={style(item.id, index)}
       onMouseEnter={(e) => {
-        handleMouseEnter(e, item.id);
+        onMouseEnter(e, item.id);
       }}
       onMouseLeave={(e) => {
-        handleMouseLeave(e, item.id);
+        onMouseLeave(e, item.id);
       }}
       onClick={(e) => {
-        handleClick(e, item.id);
+        onClick(e, item.id);
       }}
     >
       <img
@@ -61,17 +53,14 @@ function MovieCard({
   );
 }
 
-MovieCard.Simple = function MovieCardSimple({ item, index, onClick }) {
-  const handleClick = (e, id) => {
-    onClick(e, id);
-  };
+MovieCard.Simple = function MovieCardSimple({ item, onClick }) {
   return (
     <a
       href="/"
       className="movie-card simple"
       key={item.id}
       onClick={(e) => {
-        handleClick(e, item.id);
+        onClick(e, item.id);
       }}
     >
       <img
@@ -81,4 +70,23 @@ MovieCard.Simple = function MovieCardSimple({ item, index, onClick }) {
     </a>
   );
 };
+
+MovieCard.propTypes = {
+  item: PropTypes.object,
+  index: PropTypes.number,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onClick: PropTypes.func,
+  style: PropTypes.func,
+  tabIndex: PropTypes.string,
+  focusFirst: PropTypes.bool,
+  currentlyDisplayed: PropTypes.object,
+  needFocus: PropTypes.bool,
+};
+
+MovieCard.Simple.propTypes = {
+  item: PropTypes.object,
+  onClick: PropTypes.func,
+};
+
 export default MovieCard;

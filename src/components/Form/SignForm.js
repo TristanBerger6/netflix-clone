@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SignForm.scss';
 
 function SignForm({ children, onSubmit }) {
@@ -62,6 +63,34 @@ SignForm.Message = function SignFormMessage({ children }) {
       {children}
     </div>
   );
+};
+
+SignForm.propTypes = {
+  children: PropTypes.node,
+  onSubmit: PropTypes.func,
+};
+SignForm.Error.propTypes = {
+  children: PropTypes.node,
+};
+SignForm.Submit.propTypes = {
+  children: PropTypes.node,
+  disabled: PropTypes.string,
+};
+
+SignForm.Message.propTypes = {
+  children: PropTypes.node,
+};
+SignForm.Label.propTypes = {
+  children: PropTypes.node,
+  id: PropTypes.string,
+};
+SignForm.Input.propTypes = {
+  children: PropTypes.node,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default SignForm;

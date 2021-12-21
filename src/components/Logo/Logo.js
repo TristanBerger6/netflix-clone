@@ -1,11 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import * as ROUTES from '../../constants/routes';
-import './Logo.scss';
 
 function Logo({ state, route }) {
-  // ----   media query ---------------------//
   const isDesktop = useMediaQuery({
     query: '(min-width: 576px)',
   });
@@ -40,5 +39,10 @@ function Logo({ state, route }) {
     );
   }
 }
+
+Logo.propTypes = {
+  state: PropTypes.string,
+  route: PropTypes.string,
+};
 
 export default Logo;

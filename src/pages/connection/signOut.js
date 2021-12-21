@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../../constants/routes';
 import './signOut.scss';
 
-import HeroBanner from '../components/HeroBanner/HeroBanner';
-import Header from '../components/Header/Header';
-import Logo from '../components/Logo/Logo';
-import Footer from '../components/Footer/Footer';
-import FooterData from '../components/Footer/Footer.json';
+import HeroBanner from '../../components/HeroBanner/HeroBanner';
+import Header from '../../components/Header/Header';
+import Logo from '../../components/Logo/Logo';
+import Footer from '../../components/Footer/Footer';
+import FooterData from '../../components/Footer/Footer.json';
 import { useEffect } from 'react/cjs/react.development';
 
 function SignOut(props) {

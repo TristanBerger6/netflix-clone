@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import './MovieFocus.scss';
 import { fetchMovie, fetchVideos } from '../../constants/requests';
 import { useFetch } from '../../utils/useFetch';
 
-function MovieFocus({ movieToFocus, removeFilm }) {
+function MovieFocus({ movieToFocus, removeMovie }) {
   const [active, setActive] = useState('');
   const [movieInfos, movieInfosError, movieInfosLoading] = useFetch(
     fetchMovie(movieToFocus.id)
@@ -18,7 +19,7 @@ function MovieFocus({ movieToFocus, removeFilm }) {
 
   const handleClick = () => {
     window.scrollTo(0, 0);
-    removeFilm();
+    removeMovie();
   };
 
   const handleKeyDown = (e) => {
@@ -56,7 +57,7 @@ function MovieFocus({ movieToFocus, removeFilm }) {
   // if loads for more than 4s, close the movie focus
   useEffect(() => {
     const id = setTimeout(() => {
-      removeFilm();
+      removeMovie();
     }, 4000);
     setTimeoutId(id);
   }, []);
@@ -70,25 +71,25 @@ function MovieFocus({ movieToFocus, removeFilm }) {
   if (movieInfos && movieVideos) {
     return (
       <div
-        className={`film-focus-container ${active}`}
+        className={`movie-focus-container ${active}`}
         tabIndex="-1"
         ref={ref}
         onKeyDown={handleKeyDown}
       >
-        <div className="film-focus text-white">
+        <div className="movie-focus text-white">
           <div>
-            <div className="film-focus__img flex">
+            <div className="movie-focus__img flex">
               <img
                 src={`https://image.tmdb.org/t/p/original${movieInfos.backdrop_path}`}
                 alt="item.title"
               />
             </div>
-            <div className="film-focus__text flex">
-              <div className="film-focus__text__desc flow">
+            <div className="movie-focus__text flex">
+              <div className="movie-focus__text__desc flow">
                 <p className="fs-600 fw-700">{movieInfos.title}</p>
                 <p className="fs-500">{movieInfos.overview}</p>
               </div>
-              <div className="film-focus__text__infos flow">
+              <div className="movie-focus__text__infos flow">
                 <p>
                   <span>Sortie : </span> {movieInfos.release_date}
                 </p>
@@ -106,7 +107,7 @@ function MovieFocus({ movieToFocus, removeFilm }) {
                 </p>
               </div>
             </div>
-            <div className="film-focus__video">
+            <div className="movie-focus__video">
               <iframe
                 title="movie trailer"
                 key={movieVideos.id}
@@ -117,7 +118,7 @@ function MovieFocus({ movieToFocus, removeFilm }) {
           </div>
 
           <button
-            className="film-focus__close"
+            className="movie-focus__close"
             onClick={handleClick}
             onKeyDown={handleKeyDown}
           >
@@ -128,21 +129,20 @@ function MovieFocus({ movieToFocus, removeFilm }) {
     );
   } else if (movieInfosLoading || movieVideosLoading) {
     return (
-      <div className={`film-focus-container `} tabIndex="-1" ref={ref}>
+      <div className={`movie-focus-container `} tabIndex="-1" ref={ref}>
         <div className="empty"></div>;
       </div>
     );
   } else if (movieInfosError || movieVideosError) {
     return (
       <div
-        className={`film-focus-container ${active}`}
-        tabI
-        ndex="-1"
+        className={`movie-focus-container ${active}`}
+        tabIndex="-1"
         ref={ref}
       >
-        <div className="film-focus text-white">
-          <div className="film-focus-error">Error</div>
-          <div className="film-focus__close" onClick={removeFilm}>
+        <div className="movie-focus text-white">
+          <div className="movie-focus-error">Error</div>
+          <div className="movie-focus__close" onClick={removeMovie}>
             <img src="./images/close.png" alt="close" />
           </div>
         </div>
@@ -150,5 +150,10 @@ function MovieFocus({ movieToFocus, removeFilm }) {
     );
   }
 }
+
+MovieFocus.propTypes = {
+  removeMovie: PropTypes.func,
+  movieToFocus: PropTypes.object,
+};
 
 export default MovieFocus;

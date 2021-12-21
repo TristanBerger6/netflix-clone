@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import PrivateOutlet from './utils/PrivateOutlet';
-import Home from './pages/home';
-import SignIn from './pages/signIn';
-import SignUp from './pages/signUp';
-import SignOut from './pages/signOut';
-import Browse from './pages/browse';
-import BrowseContainer from './containers/browse';
-import ResetPassword from './pages/resetPassword';
+import Home from './pages/home/home';
+import SignIn from './pages/connection/signIn';
+import SignUp from './pages/connection/signUp';
+import SignOut from './pages/connection/signOut';
+import Browse from './pages/browse/browse';
+import ResetPassword from './pages/connection/resetPassword';
 
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -26,6 +25,10 @@ function App() {
               <Route path=":genre" element={<Browse />}></Route>
             </Route>
           </Route>
+          <Route
+            path="*"
+            element={<h1 className="pageNotFound">Sorry, page not found</h1>}
+          ></Route>
         </Routes>
       </Router>
     </AuthProvider>

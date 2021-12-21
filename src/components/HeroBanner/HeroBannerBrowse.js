@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './HeroBannerBrowse.scss';
 
-function HeroBannerBrowse({ trending, style, displayFilm }) {
+function HeroBannerBrowse({ trending, style, displayMovie }) {
   const handleClick = function (e) {
     e.preventDefault();
-    displayFilm(trending.results[0]);
+    displayMovie(trending.results[0]);
   };
 
   return (
@@ -42,6 +43,12 @@ HeroBannerBrowse.Loading = function HeroBannerBrowseLoading() {
       <img src="./images/loading.gif" alt=" loading gif" />
     </div>
   );
+};
+
+HeroBannerBrowse.propTypes = {
+  trending: PropTypes.object,
+  style: PropTypes.func,
+  displayMovie: PropTypes.func,
 };
 
 export default HeroBannerBrowse;

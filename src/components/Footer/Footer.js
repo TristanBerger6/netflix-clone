@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.scss';
+import PropTypes from 'prop-types';
 
 function Footer({ children, bg }) {
   const divStyle = { background: bg };
@@ -27,5 +28,16 @@ Footer.Grid = function FooterGrid({ gridItems }) {
 
 Footer.Title = function FooterTitle({ children }) {
   return <p className="footer__title fs-500">{children}</p>;
+};
+
+Footer.propTypes = {
+  children: PropTypes.node,
+  bg: PropTypes.string,
+};
+Footer.Title.propTypes = {
+  children: PropTypes.node,
+};
+Footer.Grid.propTypes = {
+  children: PropTypes.array,
 };
 export default Footer;

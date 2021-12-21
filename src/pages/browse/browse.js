@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
+import * as ROUTES from '../../constants/routes';
 
-import * as ROUTES from '../constants/routes';
-
-import LoadingProfile from '../components/Loading/LoadingProfile';
-import Profile from '../components/Profile/Profile';
-import BrowseContainer from '../containers/browse';
+import LoadingProfile from '../../components/Loading/LoadingProfile';
+import Profile from '../../components/Profile/Profile';
+import BrowseContainer from '../../containers/browse';
 
 function Browse(props) {
   const [loading, setLoading] = useState(true);
@@ -27,6 +26,7 @@ function Browse(props) {
   }, [profile]);
 
   const handleClick = async function (e) {
+    // Logout button
     e.preventDefault();
     setError('');
     try {
@@ -38,13 +38,7 @@ function Browse(props) {
   };
 
   if (profile && loading === false) {
-    return (
-      <BrowseContainer
-        error={error}
-        onClick={handleClick}
-        currentUser={currentUser}
-      />
-    );
+    return <BrowseContainer onClick={handleClick} />;
   } else if (profile && loading === true) {
     return <LoadingProfile />;
   } else {

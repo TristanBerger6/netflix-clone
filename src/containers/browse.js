@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useSearchParams, useParams, Link } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSearchParams, useParams } from 'react-router-dom';
 import './browse.scss';
 import { useFetch } from '../utils/useFetch';
 import { fetchGenres } from '../constants/requests';
+
 import GenreSlider from '../components/GenreSlider/GenreSlider';
 import Header from '../components/Header/Header';
 import Logo from '../components/Logo/Logo';
@@ -14,7 +15,7 @@ import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/Footer.json';
 import GENRES from '../constants/genres.json';
 
-function BrowseContainer({ error, currentUser, onClick }) {
+function BrowseContainer({ onClick }) {
   // ---------- Fetch Hook -----------------------------//
   const [horror, horrorError, horrorLoading] = useFetch(fetchGenres.horror);
   const [trending, trendingError, trendingLoading] = useFetch(
@@ -42,11 +43,6 @@ function BrowseContainer({ error, currentUser, onClick }) {
     fetchGenres.thriller
   );
   const [war, warError, warLoading] = useFetch(fetchGenres.war);
-
-  // -----------   media query ---------------------//
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 769px)',
-  });
 
   // --------------------Params ---------------//
 
@@ -80,7 +76,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
     window.pageYOffset === 0 ? setTop('top') : setTop('');
   };
 
-  // --------------------- Film focus ----------------------------//
+  // --------------------- movie focus ----------------------------//
   useEffect(() => {
     // when focus movie needed, save the current scroll
     if (movieToFocus) {
@@ -88,7 +84,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
     }
   }, [movieToFocus]);
 
-  const displayFilm = (current) => {
+  const displayMovie = (current) => {
     // triggered by MovieCard on click
     setNeedFocus(false);
     setActiveMovieFocus(true);
@@ -102,7 +98,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
         : setCurrentlyDisplayed();
     }, 0);
   };
-  const removeFilm = async function (e) {
+  const removeMovie = async function (e) {
     // triggered by cross in Movie Focus
     setMovieToFocus('');
     setPosFixed(false);
@@ -116,7 +112,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
       setNeedScroll(false);
       window.scrollTo(0, scrollValue);
       setNeedFocus(true);
-    }, 300);
+    }, 100);
     setActiveMovieFocus(false);
   };
   // ---------------------- Styles ------------------------------//
@@ -163,7 +159,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
   return (
     <div>
       {activeMovieFocus && (
-        <MovieFocus movieToFocus={movieToFocus} removeFilm={removeFilm} />
+        <MovieFocus movieToFocus={movieToFocus} removeMovie={removeMovie} />
       )}
       <div className="browse bg-grey-dark" style={browse_style()}>
         <Header bg={`fixed ${top}`}>
@@ -189,7 +185,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
                 <HeroBannerBrowse
                   trending={trending}
                   style={poster_style}
-                  displayFilm={displayFilm}
+                  displayMovie={displayMovie}
                 />
               ) : (
                 <HeroBannerBrowse.Loading />
@@ -203,7 +199,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
                         resFetch={eval(item.resFetch)}
                         errFetch={eval(item.resFetch + 'Error')}
                         loadFetch={eval(item.resFetch + 'Loading')}
-                        displayFilm={displayFilm}
+                        displayMovie={displayMovie}
                         currentlyDisplayed={currentlyDisplayed}
                         needFocus={needFocus}
                       />
@@ -216,7 +212,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
                           resFetch={eval(item.resFetch)}
                           errFetch={eval(item.resFetch + 'Error')}
                           loadFetch={eval(item.resFetch + 'Loading')}
-                          displayFilm={displayFilm}
+                          displayMovie={displayMovie}
                           currentlyDisplayed={currentlyDisplayed}
                           needFocus={needFocus}
                         />
@@ -225,7 +221,7 @@ function BrowseContainer({ error, currentUser, onClick }) {
               </div>
             </div>
           ) : (
-            <MovieSearch displayFilm={displayFilm} render={searchParams} /> // MovieSearch fetch +render movie card. Props displayfilm passed to Movie cardon Click
+            <MovieSearch displayMovie={displayMovie} render={searchParams} /> // MovieSearch fetch +render movie card. Props displayfilm passed to Movie cardon Click
           )}
         </main>
         <Footer bg="transparent">
@@ -239,5 +235,9 @@ function BrowseContainer({ error, currentUser, onClick }) {
     </div>
   );
 }
+
+BrowseContainer.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default BrowseContainer;

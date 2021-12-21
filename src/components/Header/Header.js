@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useEffect, useState, useRef } from 'react/cjs/react.development';
 import { Link, useSearchParams } from 'react-router-dom';
 import './Header.scss';
@@ -184,6 +185,17 @@ Header.BrowseOut = function HeaderBrowseOut({ onClick }) {
       Log Out
     </button>
   );
+};
+
+Header.propTypes = {
+  bg: PropTypes.string,
+  children: PropTypes.node,
+};
+Header.BrowseSearch.propTypes = {
+  onChange: PropTypes.func,
+};
+Header.BrowseOut.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default Header;

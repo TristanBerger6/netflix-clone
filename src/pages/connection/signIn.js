@@ -1,66 +1,56 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
-import './signUp.scss';
+import * as ROUTES from '../../constants/routes';
+import './signIn.scss';
 
-import HeroBanner from '../components/HeroBanner/HeroBanner';
-import Header from '../components/Header/Header';
-import Logo from '../components/Logo/Logo';
-import Footer from '../components/Footer/Footer';
-import FooterData from '../components/Footer/Footer.json';
-import SignForm from '../components/Form/SignForm';
+import HeroBanner from '../../components/HeroBanner/HeroBanner';
+import Header from '../../components/Header/Header';
+import Logo from '../../components/Logo/Logo';
+import Footer from '../../components/Footer/Footer';
+import FooterData from '../../components/Footer/Footer.json';
+import SignForm from '../../components/Form/SignForm';
 
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-function SignUp(props) {
-  const [name, setName] = useState('');
+function SignIn(props) {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(''); // avoid spam clicking
 
-  const { signup } = useAuth();
+  const { signin } = useAuth();
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  const handleSubmit = async function (e) {
     e.preventDefault();
     try {
       setError('');
       setLoading(true);
-      const signUpRes = await signup(emailAddress, password);
-      await signUpRes.user.updateProfile({ displayName: name });
-      navigate(ROUTES.SIGN_IN);
+      await signin(emailAddress, password);
+      navigate(ROUTES.BROWSE);
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
-  }
+  };
 
   return (
     <HeroBanner bg="bg-home">
-      <div className="signUp text-white">
+      <div className="signIn text-white">
         <Header>
-          <div className="signUp__head flex">
+          <div className="signIn__head flex">
             <Logo state="clickable" route="home" />
           </div>
         </Header>
         <main>
           <SignForm onSubmit={handleSubmit}>
-            <h1 className="fs-800">S'inscrire</h1>
+            <h1 className="fs-800">S'identifier</h1>
             {error && <SignForm.Error>{error}</SignForm.Error>}
-            <SignForm.Label id="name">Entrez votre nom</SignForm.Label>
-            <SignForm.Input
-              placeholder="name"
-              type="text"
-              id="name"
-              onChange={({ target }) => setName(target.value)}
-              value={name}
-            />
             <SignForm.Label id="email">
               Entrez votre adresse e-mail
             </SignForm.Label>
             <SignForm.Input
-              placeholder={'E-mail'}
+              placeholder="E-mail"
               type="email"
               id="email"
               onChange={({ target }) => setEmailAddress(target.value)}
@@ -74,12 +64,16 @@ function SignUp(props) {
               onChange={({ target }) => setPassword(target.value)}
               value={password}
             />
-
-            <SignForm.Submit disabled={loading}> S'inscrire </SignForm.Submit>
+            <SignForm.Submit disabled={loading}> S'identifier </SignForm.Submit>
             <p className="text-grey">
-              Vous avez déjà un compte ?{' '}
-              <Link to={ROUTES.SIGN_IN} className="text-white link">
-                Connectez vous
+              <Link to={ROUTES.RESET_PASSWORD} className="text-white link">
+                Mot de passe oublié ?
+              </Link>
+            </p>
+            <p className="text-grey">
+              Première visite sur Netflix ?{' '}
+              <Link to={ROUTES.SIGN_UP} className="text-white link">
+                Inscrivez-vous
               </Link>
             </p>
           </SignForm>
@@ -96,4 +90,4 @@ function SignUp(props) {
   );
 }
 
-export default SignUp;
+export default SignIn;

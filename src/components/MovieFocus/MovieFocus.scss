@@ -1,6 +1,6 @@
 @import '../../sass/variables';
 
-.film-focus {
+.movie-focus {
   position: relative;
   max-width: min(800px, 80%);
   margin: auto;
@@ -76,14 +76,19 @@
     height: 36px;
     background: var(--clr-grey-dark);
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     img {
       filter: invert(0.4);
     }
+    &:hover,
+    &:active {
+      background: var(--clr-grey);
+    }
   }
 }
 
-.film-focus-error {
+.movie-focus-error {
   text-align: center;
   padding: 3rem;
   height: 150vh;
