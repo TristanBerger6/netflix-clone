@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react/cjs/react.development';
 import './GenreSlider.scss';
 import { useMediaQuery } from 'react-responsive';
 import MovieCard from '../MovieCard/MovieCard';

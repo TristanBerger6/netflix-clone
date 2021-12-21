@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useEffect, useState, useRef } from 'react/cjs/react.development';
 import { Link, useSearchParams } from 'react-router-dom';
 import './Header.scss';
 import GENRES from '../../constants/genres.json';
