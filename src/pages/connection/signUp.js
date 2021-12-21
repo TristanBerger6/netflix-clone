@@ -29,7 +29,7 @@ function SignUp(props) {
       setLoading(true);
       const signUpRes = await signup(emailAddress, password);
       await signUpRes.user.updateProfile({ displayName: name });
-      navigate(ROUTES.SIGN_IN);
+      navigate(process.env.PUBLIC_URL + ROUTES.SIGN_IN);
     } catch (error) {
       setError(error.message);
       setLoading(false);
