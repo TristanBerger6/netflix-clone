@@ -155,6 +155,7 @@ function BrowseContainer({ onClick }) {
     } else if (!params.genre && searchParams.get('filter') === null) {
       setGenreDisplayed('all');
     }
+    setTimeout(() => window.scrollTo(0, 0), 0); // scroll top after rendering
   }, [params, searchParams]);
 
   return (

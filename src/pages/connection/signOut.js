@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import './signOut.scss';
@@ -8,12 +8,12 @@ import Header from '../../components/Header/Header';
 import Logo from '../../components/Logo/Logo';
 import Footer from '../../components/Footer/Footer';
 import FooterData from '../../components/Footer/Footer.json';
-import { useEffect } from 'react/cjs/react.development';
 
 function SignOut(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const id = setTimeout(() => {
       navigate(process.env.PUBLIC_URL + ROUTES.HOME);
     }, 15000);

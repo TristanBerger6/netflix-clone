@@ -140,7 +140,7 @@ Header.BrowseNav = function HeaderBrowseNav() {
   }, [open]);
 
   return (
-    <div className="header-browse-nav">
+    <nav className="header-browse-nav">
       <button
         className="header-browse-nav__btn text-white flex"
         aria-haspopup="true"
@@ -177,7 +177,7 @@ Header.BrowseNav = function HeaderBrowseNav() {
           ))}
         </ul>
       )}
-    </div>
+    </nav>
   );
 };
 
