@@ -11,10 +11,7 @@ function Logo({ state, route }) {
 
   if (state === 'clickable' && route === 'home') {
     return (
-      <Link
-        to={process.env.PUBLIC_URL + ROUTES.HOME}
-        onClick={() => window.scrollTo(0, 0)}
-      >
+      <Link to={ROUTES.HOME} onClick={() => window.scrollTo(0, 0)}>
         <img
           className="nf-logo"
           src={
@@ -28,10 +25,7 @@ function Logo({ state, route }) {
     );
   } else if (state === 'clickable' && route === 'browse') {
     return (
-      <Link
-        to={process.env.PUBLIC_URL + ROUTES.BROWSE}
-        onClick={() => window.scrollTo(0, 0)}
-      >
+      <Link to={ROUTES.BROWSE} onClick={() => window.scrollTo(0, 0)}>
         <img
           className="nf-logo"
           src={

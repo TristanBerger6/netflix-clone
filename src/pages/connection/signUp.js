@@ -29,7 +29,7 @@ function SignUp(props) {
       setLoading(true);
       const signUpRes = await signup(emailAddress, password);
       await signUpRes.user.updateProfile({ displayName: name });
-      navigate(process.env.PUBLIC_URL + ROUTES.SIGN_IN);
+      navigate(ROUTES.SIGN_IN);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -78,10 +78,7 @@ function SignUp(props) {
             <SignForm.Submit disabled={loading}> S'inscrire </SignForm.Submit>
             <p className="text-grey">
               Vous avez déjà un compte ?{' '}
-              <Link
-                to={process.env.PUBLIC_URL + ROUTES.SIGN_IN}
-                className="text-white link"
-              >
+              <Link to={ROUTES.SIGN_IN} className="text-white link">
                 Connectez vous
               </Link>
             </p>

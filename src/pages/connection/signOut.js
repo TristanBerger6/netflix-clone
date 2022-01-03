@@ -15,7 +15,7 @@ function SignOut(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
     const id = setTimeout(() => {
-      navigate(process.env.PUBLIC_URL + ROUTES.HOME);
+      navigate(ROUTES.HOME);
     }, 15000);
 
     return () => {
@@ -42,10 +42,7 @@ function SignOut(props) {
               <br />
               Vous serez redirigé vers Netflix.com dans 15 secondes
             </p>
-            <Link
-              to={process.env.PUBLIC_URL + ROUTES.HOME}
-              className="btnToHome text-white"
-            >
+            <Link to={ROUTES.HOME} className="btnToHome text-white">
               Essayer maintenant
             </Link>
           </div>

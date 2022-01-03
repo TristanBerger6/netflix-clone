@@ -27,7 +27,7 @@ function SignIn(props) {
       setError('');
       setLoading(true);
       await signin(emailAddress, password);
-      navigate(process.env.PUBLIC_URL + ROUTES.BROWSE);
+      navigate(ROUTES.BROWSE);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -66,19 +66,13 @@ function SignIn(props) {
             />
             <SignForm.Submit disabled={loading}> S'identifier </SignForm.Submit>
             <p className="text-grey">
-              <Link
-                to={process.env.PUBLIC_URL + ROUTES.RESET_PASSWORD}
-                className="text-white link"
-              >
+              <Link to={ROUTES.RESET_PASSWORD} className="text-white link">
                 Mot de passe oublié ?
               </Link>
             </p>
             <p className="text-grey">
               Première visite sur Netflix ?{' '}
-              <Link
-                to={process.env.PUBLIC_URL + ROUTES.SIGN_UP}
-                className="text-white link"
-              >
+              <Link to={ROUTES.SIGN_UP} className="text-white link">
                 Inscrivez-vous
               </Link>
             </p>
