@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import PrivateOutlet from './utils/PrivateOutlet';
 import Home from './pages/home/home';
@@ -15,14 +15,8 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route
-            path={process.env.PUBLIC_URL + ROUTES.HOME}
-            element={<Home />}
-          />
-          <Route
-            path={process.env.PUBLIC_URL + ROUTES.SIGN_IN}
-            element={<SignIn />}
-          />
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
           <Route
             path={process.env.PUBLIC_URL + ROUTES.SIGN_UP}
             element={<SignUp />}
