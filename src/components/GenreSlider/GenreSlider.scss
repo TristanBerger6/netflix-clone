@@ -12,6 +12,12 @@
   &__wrapper {
     position: relative;
     --gap: 0;
+    button:focus {
+      opacity: 1;
+      img {
+        opacity: 1;
+      }
+    }
     &:hover {
       .genre__left-arrow,
       .genre__right-arrow {
@@ -39,7 +45,8 @@
     width: 5%;
     cursor: pointer;
     opacity: 0.8;
-    &:hover {
+    &:hover,
+    &:focus {
       img {
         transform: translateY(-50%) translateX(-50%) scale(1.3);
       }
