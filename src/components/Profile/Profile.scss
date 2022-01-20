@@ -29,20 +29,17 @@
       }
 
       &:hover {
-        &::after {
-          content: '';
-          width: 100%;
-          aspect-ratio: 1;
-          border-radius: 5px;
-          position: absolute;
-          top: 0;
-          border: 3px solid white;
-        }
-        img:after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border: 2px solid white;
+        & > .image {
+          position: relative;
+          &::after {
+            content: '';
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            border: 3px solid white;
+          }
         }
         span {
           color: white;
