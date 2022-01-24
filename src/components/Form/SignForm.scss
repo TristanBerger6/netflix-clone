@@ -32,8 +32,12 @@
       border: none;
       border-radius: 4px;
     }
-    button {
-      margin-block: 1.9rem;
+    & > .btn {
+      margin-top: 1.9rem;
+      &--continue {
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+      }
     }
   }
   @media (min-width: $screen-md-min) {

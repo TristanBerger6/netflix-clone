@@ -165,7 +165,7 @@ function BrowseContainer({ onClick }) {
       )}
       <div className="browse bg-grey-dark" style={browse_style()}>
         <Header bg={`fixed ${top}`}>
-          <h1 class="sr-only">Accueil Netflix</h1>
+          <h1 className="sr-only">Accueil Netflix</h1>
           <div className="browse__head flex">
             <div className="browse__head__left flex">
               <Logo state="clickable" route="browse" />

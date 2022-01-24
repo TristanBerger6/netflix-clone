@@ -5,6 +5,7 @@ import SignForm from './SignForm';
 function SubForm({ num }) {
   const [error, setError] = useState('');
   const handleSubmit = (e) => {
+    e.preventDefault();
     setError('display');
   };
 

@@ -51,6 +51,19 @@ SignForm.Submit = function SignFormSubmit({ children, disabled }) {
   );
 };
 
+SignForm.Continue = function SignFormContinue({ children, disabled, onClick }) {
+  return (
+    <button
+      type="button"
+      className="btn btn--continue fs-500 fw-700"
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
+
 SignForm.Error = function SignFormError({ children }) {
   return (
     <div className="sign__card__error fs-400 fw-700 text-grey">{children}</div>
@@ -74,7 +87,13 @@ SignForm.Error.propTypes = {
 };
 SignForm.Submit.propTypes = {
   children: PropTypes.node,
-  disabled: PropTypes.string,
+  disabled: PropTypes.bool,
+};
+
+SignForm.Continue.propTypes = {
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 SignForm.Message.propTypes = {

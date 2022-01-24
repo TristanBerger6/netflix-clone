@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import './signIn.scss';
@@ -16,7 +16,7 @@ function SignIn(props) {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(''); // avoid spam clicking
+  const [loading, setLoading] = useState(false); // avoid spam clicking
 
   const { signin } = useAuth();
   const navigate = useNavigate();
@@ -27,6 +27,19 @@ function SignIn(props) {
       setError('');
       setLoading(true);
       await signin(emailAddress, password);
+      navigate(ROUTES.BROWSE);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  const handleClick = async function (e) {
+    e.preventDefault();
+    try {
+      setError('');
+      setLoading(true);
+      await signin('user@user.com', '000000');
       navigate(ROUTES.BROWSE);
     } catch (error) {
       setError(error.message);
@@ -65,6 +78,9 @@ function SignIn(props) {
               value={password}
             />
             <SignForm.Submit disabled={loading}> S'identifier </SignForm.Submit>
+            <SignForm.Continue onClick={handleClick} disabled={loading}>
+              Continuer sans s'identifier
+            </SignForm.Continue>
             <p className="text-grey">
               <Link to={ROUTES.RESET_PASSWORD} className="text-white link">
                 Mot de passe oublié ?
