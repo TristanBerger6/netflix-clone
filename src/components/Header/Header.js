@@ -184,7 +184,7 @@ Header.BrowseNav = function HeaderBrowseNav() {
 Header.BrowseOut = function HeaderBrowseOut({ onClick }) {
   return (
     <button className="header-browse-out" onClick={onClick}>
-      Log Out
+      Déconnexion
     </button>
   );
 };
